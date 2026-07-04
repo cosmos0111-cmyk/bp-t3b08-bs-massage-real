@@ -7,10 +7,4 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-User-agent: Yeti
-Allow: /
-
-User-agent: OAI-SearchBot
-Allow: /
-
-Sitemap: https://t3b08-bs-massage-real.pages.dev/sitemap.xml
+Sitemap: https://balsan-care-review.program-school.online/sitemap.xml
