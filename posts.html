@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>글 목록 (1/2) · t3b08-bs-massage-real</title>
+  <meta name="description" content="t3b08-bs-massage-real에 올라온 글 목록입니다.">
+  <link rel="canonical" href="https://balsan-care-review.program-school.online/posts.html">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+*, *::before, *::after {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+
+html {
+ font-size: 16px;
+ scroll-behavior: smooth;
+}
+
+body {
+ font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+ background-color: #fafaf9;
+ color: #1c1917;
+ line-height: 1.6;
+ -webkit-font-smoothing: antialiased;
+ -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+ max-width: 1120px;
+ margin: 0 auto;
+ padding: 0 20px;
+}
+
+/* 스티키 네비게이션 */
+header {
+ position: sticky;
+ top: 0;
+ z-index: 1000;
+ background-color: rgba(250, 250, 249, 0.97);
+ backdrop-filter: blur(12px);
+ -webkit-backdrop-filter: blur(12px);
+ border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.nav-inner {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ height: 64px;
+ max-width: 1120px;
+ margin: 0 auto;
+ padding: 0 20px;
+}
+
+.logo {
+ font-size: 1.35rem;
+ font-weight: 800;
+ letter-spacing: -0.02em;
+ text-decoration: none;
+ color: #1c1917;
+ display: flex;
+ align-items: center;
+ gap: 6px;
+}
+
+.logo span {
+ display: inline-block;
+ background: #1c1917;
+ color: #fafaf9;
+ font-size: 0.7rem;
+ font-weight: 700;
+ padding: 2px 8px;
+ border-radius: 20px;
+ letter-spacing: 0.02em;
+ vertical-align: middle;
+}
+
+.nav-links {
+ display: flex;
+ align-items: center;
+ gap: 32px;
+ list-style: none;
+}
+
+.nav-links a {
+ text-decoration: none;
+ color: #44403c;
+ font-size: 0.9rem;
+ font-weight: 500;
+ transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+ color: #1c1917;
+}
+
+.nav-cta {
+ display: inline-block;
+ background-color: #1c1917;
+ color: #fafaf9 !important;
+ padding: 8px 20px;
+ border-radius: 40px;
+ font-weight: 600;
+ font-size: 0.85rem;
+ transition: all 0.2s ease;
+ text-decoration: none;
+}
+
+.nav-cta:hover {
+ background-color: #44403c;
+ transform: scale(1.02);
+}
+
+/* 햄버거 */
+.hamburger {
+ display: none;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ width: 40px;
+ height: 40px;
+ background: none;
+ border: none;
+ cursor: pointer;
+ padding: 0;
+ gap: 5px;
+}
+
+.hamburger span {
+ display: block;
+ width: 22px;
+ height: 2px;
+ background: #1c1917;
+ border-radius: 2px;
+ transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+ .hamburger {
+ display: flex;
+ }
+
+ .nav-links {
+ position: fixed;
+ top: 64px;
+ left: 0;
+ width: 100%;
+ background: #fafaf9;
+ flex-direction: column;
+ padding: 24px 20px;
+ gap: 20px;
+ border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+ transform: translateY(-120%);
+ opacity: 0;
+ transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+ pointer-events: none;
+ box-shadow: 0 12px 24px rgba(0, 0, 0, 0.04);
+ }
+
+ .nav-links.active {
+ transform: translateY(0);
+ opacity: 1;
+ pointer-events: all;
+ }
+
+ .nav-links a {
+ font-size: 1.05rem;
+ padding: 8px 0;
+ width: 100%;
+ text-align: center;
+ }
+
+ .nav-cta {
+ width: 100%;
+ text-align: center;
+ padding: 12px 20px;
+ }
+}
+
+/* 메인 컨텐츠 */
+.page-info {
+ padding: 60px 0 80px;
+}
+
+.page-info h1 {
+ font-size: 2.6rem;
+ font-weight: 800;
+ letter-spacing: -0.03em;
+ line-height: 1.2;
+ margin-bottom: 12px;
+}
+
+.page-info .subhead {
+ font-size: 1.15rem;
+ color: #57534e;
+ margin-bottom: 48px;
+ max-width: 640px;
+}
+
+.info-grid {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 32px;
+ margin-bottom: 60px;
+}
+
+.info-card {
+ background: #ffffff;
+ border-radius: 20px;
+ padding: 32px 28px;
+ border: 1px solid rgba(0, 0, 0, 0.05);
+ transition: box-shadow 0.25s ease;
+}
+
+.info-card:hover {
+ box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+}
+
+.info-card h2 {
+ font-size: 1.3rem;
+ font-weight: 700;
+ letter-spacing: -0.02em;
+ margin-bottom: 16px;
+ display: flex;
+ align-items: center;
+ gap: 8px;
+}
+
+.info-card h2::before {
+ content: "›";
+ font-size: 1.6rem;
+ font-weight: 300;
+ color: #a8a29e;
+}
+
+.info-card ul {
+ list-style: none;
+ padding: 0;
+}
+
+.info-card ul li {
+ padding: 8px 0;
+ border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+ font-size: 0.95rem;
+ color: #292524;
+ display: flex;
+ justify-content: space-between;
+}
+
+.info-card ul li:last-child {
+ border-bottom: none;
+}
+
+.info-card ul li span.label {
+ color: #78716c;
+ font-weight: 500;
+}
+
+.info-card ul li span.value {
+ font-weight: 600;
+ text-align: right;
+}
+
+.tip-section {
+ background: #ffffff;
+ border-radius: 20px;
+ padding: 40px 36px;
+ border: 1px solid rgba(0, 0, 0, 0.05);
+ margin-bottom: 48px;
+}
+
+.tip-section h2 {
+ font-size: 1.6rem;
+ font-weight: 700;
+ letter-spacing: -0.02em;
+ margin-bottom: 24px;
+}
+
+.tip-section p {
+ font-size: 1rem;
+ color: #292524;
+ margin-bottom: 16px;
+ line-height: 1.7;
+}
+
+.tip-section strong {
+ font-weight: 700;
+ color: #1c1917;
+}
+
+.faq-block {
+ background: #ffffff;
+ border-radius: 20px;
+ padding: 40px 36px;
+ border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.faq-block h2 {
+ font-size: 1.6rem;
+ font-weight: 700;
+ letter-spacing: -0.02em;
+ margin-bottom: 28px;
+}
+
+.faq-item {
+ padding: 18px 0;
+ border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.faq-item:last-child {
+ border-bottom: none;
+}
+
+.faq-item h3 {
+ font-size: 1.05rem;
+ font-weight: 600;
+ margin-bottom: 6px;
+ color: #1c1917;
+}
+
+.faq-item p {
+ font-size: 0.95rem;
+ color: #57534e;
+ line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+ .page-info h1 {
+ font-size: 1.8rem;
+ }
+
+ .info-grid {
+ grid-template-columns: 1fr;
+ gap: 20px;
+ }
+
+ .info-card {
+ padding: 24px 20px;
+ }
+
+ .tip-section,
+ .faq-block {
+ padding: 28px 20px;
+ }
+}
+
+/* 푸터 */
+footer {
+ border-top: 1px solid rgba(0, 0, 0, 0.05);
+ padding: 32px 0;
+ text-align: center;
+ color: #a8a29e;
+ font-size: 0.85rem;
+}
+</style>
+  <meta property="og:title" content="글 목록 (1/2) · t3b08-bs-massage-real">
+  <meta property="og:description" content="t3b08-bs-massage-real에 올라온 글 목록입니다.">
+  <meta property="og:url" content="https://balsan-care-review.program-school.online/posts.html">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+</head>
+<body>
+  <div class="container">
+    <header>
+ <div class="nav-inner">
+ <a href="/" class="logo">발산마사지<span>내돈내산</span></a>
+ <button class="hamburger" id="hamburger" aria-label="메뉴 열기">
+ 
+ 
+ 
+ </button>
+ <ul class="nav-links" id="navLinks">
+ <li><a href="/">홈</a></li>
+ <li><a href="/info">정보</a></li>
+ <li><a href="/review">후기</a></li>
+ <li><a href="/compare">비교</a></li>
+ 
+ </ul>
+ </div>
+</header>
+    <main>
+      <h1>글 목록</h1>
+      <p>전체 40개 · 1/2 페이지</p>
+      <ul class="post-list">
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260705-086.html">발산에서 나만을 위한 마사지 샵을 고르는 현명한 방법</a>
+        <p class="post-item__summary">발산 일대에서 마사지를 받으려 할 때 가장 먼저 고려해야 할 점은 본인의 몸 상태에 맞는 관리 방식을 선택하는 것입니다. 흔히 건식과 습식으로 나뉘는 마사지 유형은 피로의 원인이 근육의 경직인지 혈</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0460.html">발산 마사지 내돈내산 경험으로 본 동대문 풋쌤 방문 가이드</a>
+        <p class="post-item__summary">평소 피로를 풀기 위해 마사지 샵을 선택할 때 무엇을 가장 우선순위에 두고 결정하시나요. 발산 마사지 내돈내산 후기들을 찾아보다 보면 수많은 업체들 사이에서 어떤 곳이 나의 몸 상태에 적합한지 판단</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0461.html">발산 마사지 내돈내산 경험으로 본 마포/합정 인디 소셜 라운지 가이드 및 파티 활용법</a>
+        <p class="post-item__summary">발산 마사지 내돈내산 후기를 살펴볼 때 느끼는 것처럼 소셜 공간을 선택하는 데에도 철저한 검증이 필요합니다. 온라인상의 후기가 실제 경험과 얼마나 일치하는지 파악하는 과정은 매우 중요합니다. 마포와</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0462.html">발산 마사지 내돈내산 후기처럼 정직한 원문 보기</a>
+        <p class="post-item__summary">발산 마사지 내돈내산 정보들이 신뢰를 얻는 이유는 실제 비용과 가치를 직접 대조하기 때문입니다. 디지털 분야에서도 웹사이트의 도메인 지수를 관리하는 일은 마사지 샵의 실력을 평가하는 것과 본질적으로</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0463.html">발산 마사지 내돈내산 경험으로 분석한 마포 홍대 로컬 럭셔리 밤문화 가이드 예약 및 실패 방지</a>
+        <p class="post-item__summary">발산 마사지 내돈내산 경험을 통해 얻은 교훈 중 하나는 정보의 불균형이 실패를 만든다는 사실입니다. 마포나 홍대 지역의 럭셔리 밤문화를 즐기려 할 때도 마찬가지입니다. 초보자들은 흔히 화려한 광고 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0464.html">발산 마사지 내돈내산 후기보다 꼼꼼한 마포 코인노래방 방음 시설 비교 가이드 및 접근성 체크</a>
+        <p class="post-item__summary">발산 마사지 내돈내산 후기를 꼼꼼히 살피는 당신이라면 마포 코인노래방을 고를 때도 철저한 확인이 필요함을 알 것입니다. 단순히 가격이 저렴한 곳을 찾기보다 실질적인 방음 성능과 쾌적함이 보장되는 곳</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0465.html">발산 마사지 내돈내산 경험으로 본 마포 셔츠룸 리얼 후기 소셜 마케팅 가이드</a>
+        <p class="post-item__summary">주말 저녁 모임 장소를 물색하던 중 우연히 발산 마사지 내돈내산 후기를 접하며 마케팅의 중요성을 실감했습니다. 단순한 서비스 체험기인 줄 알았던 글들이 실제로는 특정 비즈니스의 페르소나를 정밀하게 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0466.html">발산 마사지 내돈내산 진실과 마포 유흥 투명 정찰제 가격 정보 디렉토리</a>
+        <p class="post-item__summary">발산 마사지 내돈내산 후기를 보면 고무줄 가격에 속았다는 불만 글이 종종 보입니다. 하지만 모든 업소가 불투명하게 운영된다는 것은 큰 오해입니다. 합리적인 소비를 위해서는 명확하게 공개된 가격 체계</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0467.html">발산 마사지 내돈내산 경험과 구글 알고리즘 감점 치료 및 백링크 수술실</a>
+        <p class="post-item__summary">성공적인 웹사이트 운영을 위해서는 적절한 콘텐츠 질, 내부 링크 구조, 사용자 경험 등 여러 조건이 충족되어야 합니다. 발산 마사지 내돈내산 관련 콘텐츠를 작성하며 느낀 점은 검색 엔진의 평가가 매</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0468.html">발산 마사지 내돈내산 리뷰 후 여기에서 확인</a>
+        <p class="post-item__summary">여러분은 자신의 블로그에 양질의 콘텐츠를 충분히 공급하고 계신가요? 발산 마사지 내돈내산 리뷰를 작성하며 깨달은 점은 정보의 순도가 곧 사이트의 경쟁력이라는 사실입니다. 깨끗하고 신뢰할 수 있는 외</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0469.html">발산 마사지 내돈내산 경험으로 본 마포 셔츠룸 예약 시 눈탱이 피하는 법</a>
+        <p class="post-item__summary">일상에서 지친 몸을 풀기 위해 발산 마사지 내돈내산 후기를 찾는 분들이 많습니다. 이러한 소비 성향은 유흥 업소 예약 과정에서도 신중한 태도로 이어지며 소비자 보호의 중요성을 일깨워줍니다. 특히 투</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0470.html">발산 마사지 내돈내산 후기 관점으로 본 4</a>
+        <p class="post-item__summary">온라인상에는 발산 마사지 내돈내산 정보처럼 검증되지 않은 교육 프로그램 광고가 넘쳐납니다. 무인 마케팅 스쿨을 찾는 수강생들은 무작정 등록하기보다 비용 대비 효과를 꼼꼼히 따져야 합니다. 자신의 실</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0471.html">발산 마사지 내돈내산 정보 신뢰도와 구글 틈새 키워드 트래픽 외환 거래 전략의 상관관계</a>
+        <p class="post-item__summary">발산 마사지 내돈내산 리뷰를 꼼꼼히 살피는 자세는 고위험 투자 분야인 외환 거래 전략을 수립할 때도 그대로 적용됩니다. 많은 투자자들이 트래픽 차익 투자에 뛰어들지만, 정보의 비대칭성을 극복하지 못</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0472.html">발산 마사지 내돈내산 평가처럼 깐깐한 구글 봇 정밀 검진 및 크롤 버짓 밀착 간호 분석</a>
+        <p class="post-item__summary">발산 마사지 내돈내산 후기를 분석할 때 위치와 접근성을 따지는 것처럼, 웹사이트 최적화도 검색 엔진의 접근성을 고려해야 합니다. 구글 봇 정밀 검진 및 크롤 버짓 밀착 간호는 사이트의 건강 상태를 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0473.html">발산 마사지 내돈내산 경험으로 알아보는 성공적인 셔츠룸 예약 가이드</a>
+        <p class="post-item__summary">피로가 쌓인 저녁 시간에 인근에서 발산 마사지 내돈내산 탐방을 마치고 나면, 왠지 모르게 허전함을 느끼는 경우가 종종 있습니다. 단순히 휴식만을 취하기보다 동료들과 조금 더 특별한 밤을 보내고 싶은</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0474.html">발산 마사지 내돈내산 이후 찾는 마포 단체 회식용 대형 룸 노래방 가격 정보</a>
+        <p class="post-item__summary">많은 이들이 회식 장소를 정할 때, 규모가 크면 가격이 지나치게 높을 것이라는 편견을 가집니다. 발산 마사지 내돈내산 경험담을 나누며 장소를 물색하는 직장인들이 자주 하는 착각이기도 합니다. 하지만</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0475.html">발산 마사지 내돈내산 경험으로 확인하는 셔츠룸 사이트 선택의 기준</a>
+        <p class="post-item__summary">신뢰할 수 있는 정보를 제공하는지, 실시간 업데이트가 활발한지, 그리고 사용자의 후기가 투명한지가 좋은 플랫폼의 기본 조건입니다. 발산 마사지 내돈내산 후기를 찾을 때 느꼈던 기준을 그대로 적용하면</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260719-0476.html">발산 마사지 내돈내산 후 합정 셔츠룸 단골들이 뽑은 핫플 매거진 읽기</a>
+        <p class="post-item__summary">당신은 과연 합정 지역에서 제대로 된 서비스를 즐길 준비가 되셨습니까? 발산 마사지 내돈내산 여정을 마친 분들이라면 이제 합정 셔츠룸 단골들이 뽑은 핫플 매거진을 통해 한 차원 높은 휴식처를 찾아 </p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260721-0429.html">발산 마사지 내돈내산 경험으로 풀어보는 구글 알고리즘 고신용 도메인 보증 카드 발급 절차</a>
+        <p class="post-item__summary">발산 마사지 내돈내산 후기를 찾는 과정에서 얻은 정보의 신뢰성을 검토하다 보면, 디지털 자산의 가치를 평가하는 기준과 맞닿아 있음을 깨닫게 됩니다. 특정 서비스의 질을 파악하는 것과 마찬가지로, 웹</p>
+      </li>
+      <li class="post-item">
+        <a class="post-item__link" href="posts/gemini-coverage-20260721-0430.html">발산 마사지 내돈내산 이후 찾는 마포 홍대 단체 가라오케 예약 가이드</a>
+        <p class="post-item__summary">발산 마사지 내돈내산 경험을 통해 얻은 꼼꼼한 비교 습관은 마포 지역의 유흥 문화를 즐길 때도 큰 도움이 됩니다. 홍대와 합정 일대에는 수많은 업소가 밀집해 있어 사전에 기준을 세우지 않으면 선택에</p>
+      </li>
+      </ul>
+    <nav class="pager">
+      <span class="pager__current">1</span>
+      <a class="pager__link" href="posts-2.html">2</a>
+    </nav>
+    </main>
+  </div>
+</body>
+</html>
